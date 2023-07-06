@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EnilsonEvents.API.Data;
 using EnilsonEvents.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,40 +13,25 @@ namespace EnilsonEvents.API.Controllers
     [Route("api/[controller]")]
     public class EventoController : ControllerBase
     {
+        private readonly DataContext _context;
 
-        public IEnumerable<Evento> _evento = new Evento[]{
-                new Evento(){
-                EventoId = 1,
-                Tema = "Angular 11",
-                Local = "Caruaru",
-                Lote = "1º Lote",
-                QtdPessoas = 250,
-                DataEvento = DateTime.Now.AddDays(2).ToString()
-                },
-                new Evento(){
-                EventoId = 2,
-                Tema = "Angular 11 e .Net5",
-                Local = "Garanhuns",
-                Lote = "3º Lote",
-                QtdPessoas = 320,
-                DataEvento = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy")
-                },
-        };
-
-        public EventoController()
+        public EventoController(DataContext context)
         {
+            _context = context;
         }
 
         [HttpGet]
         public IEnumerable<Evento> Get()
         {
-            return _evento;
+            return _context.Eventos;
         }
 
         [HttpGet("id")]
-        public IEnumerable<Evento> GetById(int id)
+        public Evento GetById(int id)
         {
-            return _evento.Where(evento => evento.EventoId == id);
+            return _context.Eventos.FirstOrDefault(evento =>
+            evento.EventoId == id
+            );
         }
 
         [HttpPost]
