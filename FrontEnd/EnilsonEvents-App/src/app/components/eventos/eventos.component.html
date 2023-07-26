@@ -11,7 +11,10 @@
     <tr>
       <th>
         <button type="button" class="btn btn-outline-light btn-sm" (click)="isCollapsed = !isCollapsed"
-          aria-controls="collapseBasic">{{isCollapsed ? 'Exibir' : 'Ocultar'}}</button>
+          aria-controls="collapseBasic">
+          <i class="{{isCollapsed ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
+          {{isCollapsed ? 'Exibir' : 'Ocultar'}}
+        </button>
       </th>
       <th>#</th>
       <th>Tema</th>
@@ -26,17 +29,21 @@
     <tr *ngFor="let event of eventosFiltrados">
       <td>
         <img src="/assets/{{event.imagemURL}}" [collapse]="isCollapsed" [isAnimated]="true" [style.width.px]="150"
-          alt="Imagem{{ event.eventoId }}">
+          alt="Imagem{{ event.id }}">
       </td>
-      <td>{{event.eventoId}}</td>
+      <td>{{event.id}}</td>
       <td>{{event.tema}}</td>
       <td>{{event.local}}</td>
-      <td>{{event.dataEvento}}</td>
+      <td>{{event.dataEvento | DateTimeFormat}}</td>
       <td>{{event.qtdPessoas}}</td>
-      <td>{{event.lote}}</td>
+      <td>{{event.lotes[0].nome}}</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
-        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+        <button type="button" class="btn btn-primary btn-sm mr-2">
+          <i class="fa fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-danger btn-sm">
+          <i class="fa fa-trash"></i>
+        </button>
       </td>
     </tr>
 

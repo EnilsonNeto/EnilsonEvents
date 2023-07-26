@@ -9,13 +9,14 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     EventosComponent,
     PalestrantesComponent,
-    NavComponent
+    NavComponent,
+    DateTimeFormatPipe
   ],
   imports: [
     BrowserModule,
