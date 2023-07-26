@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
-    FormsModule
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
